@@ -5,6 +5,7 @@ public class A_Watermelon{
     }
 
     public boolean canDivide(int weight){
+        if(weight<4) return false;
         if(weight%2==0) return true;
 
         return false;
