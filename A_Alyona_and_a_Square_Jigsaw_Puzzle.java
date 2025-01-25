@@ -9,33 +9,28 @@ public class A_Alyona_and_a_Square_Jigsaw_Puzzle{
             int n=sc.nextInt();
             int[] pieces=new int[n];
             for(int i=0;i<n;++i) pieces[i]=sc.nextInt();
-
-            int layers=0,remaining=0;
+            
+            int[] sum=new int[n];
+            int current=0;
             for(int i=0;i<n;++i){
-                if(i==0 && pieces[i]==1) {
-                    //++happydays;
-                    ++layers;
-                }else{
-                    int possibleLayers= (int) Math.sqrt(pieces[i]);
-                    if(possibleLayers==2){
-                        possibleLayers=3;
-                    }
-                    int totalpieces=(int) Math.pow(possibleLayers,2)-1;
-                    if(totalpieces>(pieces[i]+remaining)){
-                        remaining=(totalpieces-pieces[i]-remaining);
-                        layers=possibleLayers-1;
-                    }else if(totalpieces<pieces[i]){
-                        layers=(possibleLayers);
-                        remaining=(pieces[i]-totalpieces);
-                    }else{
-                        //++happydays;
-                        layers=possibleLayers;
-                        remaining=0;
-                    }
-                }
+                current+=pieces[i];
+                sum[i]+=current;
             }
+            //int last = sum[0];
+ 
+		    int layers = 1; 
+		    for (int i = 1; i < sum.length; i++) {
+			
+			    double odd = Math.sqrt(sum[i]);
+ 
+			    if(odd % 2 != 0 && (int)odd*(int)odd == sum[i])
+			    {
+				    layers++;
+			    }			
+	    	}
             System.out.println(layers);
             --t;
         }
+        sc.close();
     }
 }
